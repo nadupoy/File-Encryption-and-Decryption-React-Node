@@ -1,42 +1,93 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+    --background-body: hsl(0, 0%, 85%);
+    --background-app: hsl(0, 0%, 100%);
+    --font-color: hsl(0, 0%, 21%);
+    --accent-color: hsl(183, 31%, 34%);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+    background-color: var(--background-body);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--font-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.app-component {
+    background-color: var(--background-app);
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    box-shadow: 0px 4px 4px 0px var(--accent-color);
 }
 
-.card {
-  padding: 2em;
+form {
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
-.read-the-docs {
-  color: #888;
+h2 {
+    color: var(--accent-color);
+}
+
+input[type="text"] {
+    border: solid 1px var(--accent-color);
+    border-radius: 4px;
+    outline: none;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+input[type="button"], input[type="reset"] {
+    background-color: var(--background-body);
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+input[type="button"]:hover, input[type="reset"]:hover {
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: var(--background-app);
+}
+
+.output {
+    font-weight: 700;
+}
+
+.output > span {
+    color: var(--accent-color);
+}
+
+footer {
+    text-align: center;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+footer a:visited {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--font-color);
+    font-weight: 500;
+    cursor: pointer;
 }

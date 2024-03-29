@@ -1,8 +1,9 @@
 import ReactDOM from "react-dom/client";
+import "./App.css";
 
 function App() {
   return (
-    <>
+    <section className="app-component">
       <h2>ENCRYPTOR/DECRYPTOR:</h2>
 
       <form id="app">
@@ -18,15 +19,14 @@ function App() {
       </form>
 
       <p className="output">
-        Output: <span id="output"></span>
+        Output: <span></span>
       </p>
-    </>
+    </section>
   );
 }
 
 function Attribution() {
   return (
-    <>
       <footer>
         <p>
           Built by{" "}
@@ -36,7 +36,6 @@ function Attribution() {
           .
         </p>
       </footer>
-    </>
   );
 }
 
