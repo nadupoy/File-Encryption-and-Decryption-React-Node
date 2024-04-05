@@ -1,27 +1,36 @@
-// Import Express and CORS:
-const express = require("express");
-const cors = require("cors");
-// Create an Express application:
-const app = express();
-const port = 8000;
+var express = require("express");
+var cors = require("cors");
+var app = express();
 
+// Enable all CORS requests:
 app.use(cors());
-/*
-Since this is a SPA, add a middleware function (i.e. 'use()') with no mount
-path. The function is executed everytime app.js recieves a request.
-*/
-// app.use((req, res) => {
-//   console.log("Hello from the server!");
-// });
+
+// Enable pre-flight across the board:
+app.options('*', cors());
+
+var port = 8080;
+
+// Configure CORS:
+var corsOptions = {
+  origin: "http://localhost:5173/",
+  optionsSuccessStatus: 200 /* some legacy browsers (IE11, various SmartTVs) 
+  choke on 204 */,
+};
+
+// Deserialize form data sent from client into a JavaScript object:
 app.use(express.json());
-app.get('/result', (req, res) => {
-  res.json({message: "Hello from server!"});
+
+// POST request handler:
+app.post("/", (req, res) => {
+  const messageInput = req.body;
+  console.log(messageInput); // verify data is coming through in the expected shape
 });
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
+// enable CORS for a single Route:
+app.get("/", function (req, res, next) {
+  res.json({ message: "" });
+});
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(port, function () {
+  console.log(`CORS-enabled web server listening on port ${port}`);
 });

@@ -5,19 +5,47 @@ import "./App.css";
 function App() {
   const [output, getOutput] = useState("");
 
-  // useEffect(() => {
-  //   fetch("http://localhost:8000")
-  //     .then((res) => res.json())
-  //     .then((data) => createCipher(data.message));
-  // }, []);
+  // Client requests computed data from the server:
+  useEffect(() => {
+    fetch("http://localhost:8080")
+      .then((res) => res.json())
+      .then((data) => getOutput(data.message));
+  }, []);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // const input = document.getElementsByTagName('form')[0].value;
+    const data = "Hello World";
+    const serializedBody = JSON.stringify(data);
+    const fetchOptions = {
+      method: "POST",
+      body: serializedBody,
+    };
+
+    fetch("/", fetchOptions);
+  };
+
+  // Client sends data for computing to the server:
+  // function sendInput(e) {
+  //   const input = document.getElementById('message').value;
+
+  //   e.preventDefault();
+  // }
 
   return (
     <section className="app-component">
       <h2>ENCRYPTOR/DECRYPTOR:</h2>
 
-      <form id="app" method="post" onSubmit=""> {/*<form> sends data to the server
-      for encryption/decryption
-      */}
+      <form
+        id="app"
+        // method="post"
+        // action="/"
+        onSubmit={handleSubmit}
+      >
+        {/*
+        <form> sends data to the server for encryption/decryption
+        */}
         <label htmlFor="message" form="app">
           Input message here:
         </label>
@@ -34,8 +62,9 @@ function App() {
 
       <p className="output">
         Output: <span>{output}</span>{" "}
-        {/*the encrypted/decrypted message is displayed
-        (i.e.'fetch') here from the server
+        {/*
+        the encrypted/decrypted message is displayed (i.e.'fetch') here from the
+        server
          */}
       </p>
     </section>
